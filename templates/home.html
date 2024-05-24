@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+  <h4 class="my-4 text-center">Home</h4>
+    <a class="btn btn-primary my-4" href="/create/">Add User</a>
+    <table class="mt-5" id="user_table">
+        <thead>
+            <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Enabled</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in data %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{c.username}}</td>
+                    <td>{{c.firstName}}</td>
+                    <td>{{c.lastName}}</td>
+                    <td>{{c.email}}</td>
+                    <td>{{c.enabled}}</td>
+                </tr> 
+            {%endfor%}
+        </tbody>
+
+    </table>
+    <script>
+        $('#user_table').DataTable({
+                "language": {
+                    "lengthMenu": "Show_MENU_ Users"
+                }
+            });
+        
+        $('.dt-search input').attr('placeholder', 'Search...');
+    </script>
+{% endblock %}
